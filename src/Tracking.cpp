@@ -508,25 +508,22 @@ namespace myslam
                             mCurrentFrame.mvKeysUn[i].pt.y > objs[k]->top &&
                             mCurrentFrame.mvKeysUn[i].pt.y < objs[k]->bottom)
                         {
-                            float z = mCurrentFrame.mvDepth[i];
-                            if(z>0&&pMP->frame_id.count(mCurrentFrame.mnId-1))
-                            {
-                                cv::Mat pro_x3D=mCurrentFrame.UnprojectStereo(i);/////for 画图
-                                cv::Mat pro_x3Dc=mCurrentFrame.UnprojectStereo_camera(i);
-                                MapPoint* pro_MP = new MapPoint(pro_x3D,mpMap,&mCurrentFrame,i);//todo 只有这里使用帧创建地图点而不是关键帧
-                                objs[k]->pro_MapPonits.push_back(pro_MP);
-                                objs[k]->pro_MapPoints_camera.push_back(pro_x3Dc);///for 优化
-                                objs[k]->co_MapPonits.push_back(pMP);
-                                cout<<mCurrentFrame.mnId<<":"<<k<<":co_obs"<<endl;
-                            }
-
-
                             cv::Mat x3D = pMP->GetWorldPos();
                             float depth = x3D.at<float>(2, 0);
                             float middle_point = objs[k]->_Pos.at<float>(2, 0);
 
                             if (abs(depth - middle_point) < 0.1)
                             {
+                                float z = mCurrentFrame.mvDepth[i];
+                                if(z>0&&pMP->frame_id.count(mCurrentFrame.mnId-1))
+                                {
+                                    cv::Mat pro_x3D=mCurrentFrame.UnprojectStereo(i);/////for 画图
+                                    cv::Mat pro_x3Dc=mCurrentFrame.UnprojectStereo_camera(i);
+                                    MapPoint* pro_MP = new MapPoint(pro_x3D,mpMap,&mCurrentFrame,i);//todo 只有这里使用帧创建地图点而不是关键帧
+                                    objs[k]->pro_MapPonits.push_back(pro_MP);
+                                    objs[k]->pro_MapPoints_camera.push_back(pro_x3Dc);///for 优化
+                                    objs[k]->co_MapPonits.push_back(pMP);
+                                }
                                 if(objs[k]->First_obj==true)
                                     pMP->First_obj==true;
                                 pMP->object_id = objs[k]->mnId;
@@ -998,25 +995,24 @@ namespace myslam
                             mCurrentFrame.mvKeysUn[i].pt.y < objs[k]->bottom)
                         {
 
-                            float z = mCurrentFrame.mvDepth[i];
-//                            cout<<"存在："<<std::count(pMP->frame_id.begin(), pMP->frame_id.end(),mCurrentFrame.mnId-1)<<endl;
-                            if(z>0&&pMP->frame_id.count(mCurrentFrame.mnId-1))
-                            {
-                                cv::Mat pro_x3D=mCurrentFrame.UnprojectStereo(i);/////for 画图
-                                cv::Mat pro_x3Dc=mCurrentFrame.UnprojectStereo_camera(i);
-                                MapPoint* pro_MP = new MapPoint(pro_x3D,mpMap,&mCurrentFrame,i);//todo 只有这里使用帧创建地图点而不是关键帧
-                                objs[k]->pro_MapPonits.push_back(pro_MP);
-                                objs[k]->pro_MapPoints_camera.push_back(pro_x3Dc);///for 优化
-                                objs[k]->co_MapPonits.push_back(pMP);
-                                cout<<mCurrentFrame.mnId<<":"<<k<<":co_obs"<<endl;
-                            }
-
                             cv::circle(mCurrentFrame.image,mCurrentFrame.mvKeysUn[i].pt,2,cv::Scalar(0,255,0),-1);
                             cv::Mat x3D = pMP->GetWorldPos();
                             float depth = x3D.at<float>(2, 0);
                             float middle_point = objs[k]->_Pos.at<float>(2, 0);
                             if (abs(depth - middle_point) < 0.1)
                             {
+                                float z = mCurrentFrame.mvDepth[i];
+//                            cout<<"存在："<<std::count(pMP->frame_id.begin(), pMP->frame_id.end(),mCurrentFrame.mnId-1)<<endl;
+                                if(z>0&&pMP->frame_id.count(mCurrentFrame.mnId-1))
+                                {
+                                    cv::Mat pro_x3D=mCurrentFrame.UnprojectStereo(i);/////for 画图
+                                    cv::Mat pro_x3Dc=mCurrentFrame.UnprojectStereo_camera(i);
+                                    MapPoint* pro_MP = new MapPoint(pro_x3D,mpMap,&mCurrentFrame,i);//todo 只有这里使用帧创建地图点而不是关键帧
+                                    objs[k]->pro_MapPonits.push_back(pro_MP);
+                                    objs[k]->pro_MapPoints_camera.push_back(pro_x3Dc);///for 优化
+                                    objs[k]->co_MapPonits.push_back(pMP);
+//                                cout<<mCurrentFrame.mnId<<":"<<k<<":co_obs"<<endl;
+                                }
                                 if(objs[k]->First_obj==true)
                                 {
                                     pMP->First_obj==true;

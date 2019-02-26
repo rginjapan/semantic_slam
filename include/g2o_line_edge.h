@@ -41,13 +41,14 @@ namespace g2o {
             res(2) = 1;
             return res;
         }
-//        Vector2d cam_project(const Vector3d & trans_xyz) const;
+
         Vector2d project2d(const Vector3d& v)  {
             Vector2d res;
             res(0) = v(0)/v(2);
             res(1) = v(1)/v(2);
             return res;
         }
+
         Vector2d cam_project(const Vector3d & trans_xyz) {
             Vector2d proj = project2d(trans_xyz);
             Vector2d res;
@@ -61,24 +62,45 @@ namespace g2o {
             SE3Quat T(v1->estimate());
             Eigen::Matrix3d R = T.rotation().toRotationMatrix();
             Eigen::Vector3d t = T.translation();
+            Eigen::Matrix3d t_Matrix;
+            t_Matrix.setZero();
+            t_Matrix(0,1)=-t[2];
+            t_Matrix(0,2)=t[1];
+            t_Matrix(1,0)=t[2];
+            t_Matrix(1,2)=-t[0];
+            t_Matrix(2,0)=-t[1];
+            t_Matrix(2,1)=t[0];
+            Vector3d nw;
+            nw[0]=line_world[0];
+            nw[1]=line_world[1];
+            nw[2]=line_world[2];
 
-            p_w=unproject2d(cam_project(v1->estimate().map(start_point)));/// 像素点的齐次坐标
-            q_w=unproject2d(cam_project(v1->estimate().map(end_point)));
+            Vector3d vw;
+            vw[0]=line_world[3];
+            vw[1]=line_world[4];
+            vw[2]=line_world[5];
 
-//            Vector3d p_c=unproject2d(cam_project(start_point_camera));
-//            Vector3d q_c=unproject2d(cam_project(end_point_camera));
+            Vector3d nc=R*nw+t_Matrix*vw;
+            Vector3d vc=R*vw;
 
-            //// 相机坐标系下的nc乘以K转化到图像坐标
-            Line[0]=fx*line_camera[0];
-            Line[1]=fy*line_camera[1];
-            Line[2]=-fy*cx*line_camera[0]+fx*cy*line_camera[1]+fx*fy*line_camera[2];
+            //// 上一帧的世界坐标系的直线转化为像素坐标
 
-            float dist=sqrtf(Line[0]*Line[0]+Line[1]*Line[1]+Line[2]*Line[2]);//// 有没有精度损失?
+            p_c=unproject2d(cam_project(start_point_camera));
+            q_c=unproject2d(cam_project(end_point_camera));
+
+            /// 相机坐标系下的nc乘以K转化到图像坐标
+            Line[0]=fx*nc[0];
+            Line[1]=fy*nc[1];
+            Line[2]=-fy*cx*nc[0]+fx*cy*nc[1]+fx*fy*nc[2];
+            float dist=sqrtf(Line[0]*Line[0]+Line[1]*Line[1]+Line[2]*Line[2]);
             Vector2d err;
-            err[0] = p_w.dot(Line)/dist;
-            err[1] = q_w.dot(Line)/dist;
-
+            err[0] = p_c.dot(Line)/dist;
+            err[1] = q_c.dot(Line)/dist;
             _error = err;
+
+//            cout<<"dist:"<<dist<<endl;
+//            cout<<"error："<<_error<<endl;
+
         }
 
         void linearizeOplus()
@@ -89,22 +111,22 @@ namespace g2o {
             Eigen::Vector3d t = T.translation();
             Eigen::Matrix3d t_Matrix;
             t_Matrix.setZero();
-            t_Matrix(0,1)=-t(2);
-            t_Matrix(0,2)=t(1);
-            t_Matrix(1,0)=t(2);
-            t_Matrix(1,2)=-t(0);
-            t_Matrix(2,0)=-t(1);
-            t_Matrix(2,1)=t(0);
+            t_Matrix(0,1)=-t[2];
+            t_Matrix(0,2)=t[1];
+            t_Matrix(1,0)=t[2];
+            t_Matrix(1,2)=-t[0];
+            t_Matrix(2,0)=-t[1];
+            t_Matrix(2,1)=t[0];
 
             float l_dist1=pow(Line[0]*Line[0]+Line[1]*Line[1],3/2);
             float l_dist2=pow(Line[0]*Line[0]+Line[1]*Line[1],1/2);
 
             Matrix<double,2,3> error_el;
-            error_el(0,0) = p_w[0]*Line[1]*Line[1]-Line[0]*Line[1]*p_w[1]-Line[0]*Line[2]/l_dist1;
-            error_el(0,1) = p_w[1]*Line[0]*Line[0]-Line[0]*Line[1]*p_w[0]-Line[1]*Line[2]/l_dist1;
+            error_el(0,0) = (p_c[0]*Line[1]*Line[1]-Line[0]*Line[1]*p_c[1]-Line[0]*Line[2])/l_dist1;
+            error_el(0,1) = (p_c[1]*Line[0]*Line[0]-Line[0]*Line[1]*p_c[0]-Line[1]*Line[2])/l_dist1;
             error_el(0,2) = 1/l_dist2;
-            error_el(1,0) = q_w[0]*Line[1]*Line[1]-Line[0]*Line[1]*q_w[1]-Line[0]*Line[2]/l_dist1;
-            error_el(1,1) = q_w[1]*Line[0]*Line[0]-Line[0]*Line[1]*q_w[0]-Line[1]*Line[2]/l_dist1;
+            error_el(1,0) = (q_c[0]*Line[1]*Line[1]-Line[0]*Line[1]*q_c[1]-Line[0]*Line[2])/l_dist1;
+            error_el(1,1) = (q_c[1]*Line[0]*Line[0]-Line[0]*Line[1]*q_c[0]-Line[1]*Line[2])/l_dist1;
             error_el(1,2) = 1/l_dist2;
 
             Matrix<double,3,6> error_lL;
@@ -127,14 +149,19 @@ namespace g2o {
 
         double fx, fy, cx, cy;
 
-        Vector3d start_point;//// 世界坐标系下的线段起点,非齐次坐标
-        Vector3d end_point;//// 世界坐标系下的线段终点,非齐次坐标
+//        Vector3d start_point;//// 世界坐标系下的线段起点,非齐次坐标
+//        Vector3d end_point;//// 世界坐标系下的线段终点,非齐次坐标
 
-        Vector6d line_world;
-        Vector6d line_camera;
+        Vector3d start_point_camera;//// 世界坐标系下的线段起点,非齐次坐标
+        Vector3d end_point_camera;//// 世界坐标系下的线段终点,非齐次坐标
+
+        Vector6d line_world;//// Lw=[nw,vw]
+//        Vector6d line_camera;//// Lc=[nc,vc]
         Vector3d Line;
-        Vector3d p_w;
-        Vector3d q_w;
+//        Vector3d p_w;
+//        Vector3d q_w;
+        Vector3d p_c;
+        Vector3d q_c;
     };
 
 }

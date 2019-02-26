@@ -109,8 +109,9 @@ namespace myslam
                 mpMapDrawer->DrawKeyFrames(menuShowKeyFrames,menuShowGraph);
             if(menuShowPoints)
             {
-                mpMapDrawer->DrawMapPoints();
+//                mpMapDrawer->DrawMapPoints();
                 mpMapDrawer->Drawobject3Dbox(Twc);
+//                mpMapDrawer->Drawlinebetweenobjects(Twc);
             }
 
             pangolin::FinishFrame();

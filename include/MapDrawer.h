@@ -38,6 +38,7 @@ public:
     Tracking* mpTracker;
     Map* mpMap;
     void DrawMapPoints();
+    void Drawlinebetweenobjects(pangolin::OpenGlMatrix &Twc);
     void Drawobject3Dbox(pangolin::OpenGlMatrix &Twc);
     void DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph);
     void DrawCurrentCamera(pangolin::OpenGlMatrix &Twc);

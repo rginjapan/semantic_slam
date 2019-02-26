@@ -61,9 +61,9 @@ public:
     typedef Eigen::Matrix<double,6,1> Vector6d;
     typedef Eigen::Matrix<double,3,1> Vector3d;
     std::vector<Vector6d> LineVector6d;
-    std::vector<Vector3d> F_Point;
-    std::vector<Vector3d> E_Point;
-    std::vector<Vector6d> LineVector6d_pro_camera;
+    std::vector<Vector3d> F_Point;///
+    std::vector<Vector3d> E_Point;///
+    std::vector<Vector6d> LineVector6d_pro_camera;///
     std::vector<Vector3d> F_Point_camera;
     std::vector<Vector3d> E_Point_camera;
 

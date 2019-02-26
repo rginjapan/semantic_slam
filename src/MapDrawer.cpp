@@ -93,163 +93,163 @@ namespace myslam
         glColor3f(0.0,0.0,0.0);
         for(size_t i=0, iend=Objs.size(); i<iend;i++)
         {
-//            for (size_t j = 0; j < Objs[i]->MapPonits.size(); j++)
-//            {
-//                cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-//                glVertex3f(pos.at<float>(0), pos.at<float>(1), pos.at<float>(2));
-//            }
+            for (size_t j = 0; j < Objs[i]->co_MapPonits.size(); j++)
+            {
+                cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
+                glVertex3f(pos.at<float>(0), pos.at<float>(1), pos.at<float>(2));
+            }
 //        }
 //        glEnd();
 
-            if(i==0)//todo 黑色
-            {
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    glColor3f(0.0,1.0,1.0);
-                    //vector<MapPoint*> vpObjMPs.
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
+//            if(i==0)//todo 黑色
+//            {
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
+//                    glColor3f(0.0,1.0,1.0);
+//                    //vector<MapPoint*> vpObjMPs.
+//                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
+////                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==1)//todo 红色
+//            {
+//                glColor3f(1.0,0.0,0.0);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
+////                    cout<<"hahahaha"<<Objs[i]->pro_MapPonits.size()<<endl;
+//                    cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
 //                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==1)//todo 红色
-            {
-                glColor3f(1.0,0.0,0.0);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
-//                    cout<<"hahahaha"<<Objs[i]->pro_MapPonits.size()<<endl;
-                    cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-                glColor3f(1.0,0.65,0.0);
-                for (int k = 0; k <Objs[i]->pro_MapPonits.size(); ++k) {
-//                    cout<<"hahahaha"<<Objs[i]->pro_MapPonits.size()<<endl;
-                    cv::Mat pos = Objs[i]->pro_MapPonits[k]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==2)//todo 绿色
-            {
-                glColor3f(0.0,1.0,0.0);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
-//                    cout<<"hahahaha"<<Objs[i]->pro_MapPonits.size()<<endl;
-                    cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-                glColor3f(0.0,0.0,1.0);
-                for (int k = 0; k <Objs[i]->co_MapPonits.size(); ++k) {
-                    cv::Mat pos = Objs[i]->pro_MapPonits[k]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==3)//todo 蓝色
-            {
-                glColor3f(0.0,0.0,1.0);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
+//                }
+////                glColor3f(1.0,0.65,0.0);
+////                for (int k = 0; k <Objs[i]->pro_MapPonits.size(); ++k) {
+//////                    cout<<"hahahaha"<<Objs[i]->pro_MapPonits.size()<<endl;
+////                    cv::Mat pos = Objs[i]->pro_MapPonits[k]->GetWorldPos();
+////                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+////                }
+//            }
+//            else if(i==2)//todo 绿色
+//            {
+//                glColor3f(0.0,1.0,0.0);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
+////                    cout<<"hahahaha"<<Objs[i]->pro_MapPonits.size()<<endl;
+//                    cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
 //                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==4)//todo 青色
-            {
-                glColor3f(0.0,0.0,0.0);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==5)//todo 黄色
-            {
-                glColor3f(1.0,1.0,0.0);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==6)//todo 粉色
-            {
-                glColor3f(1.0,0.0,1.0);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==7)//todo 灰色
-            {
-                glColor3f(0.5,0.5,0.5);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==8)//todo　棕色
-            {
-                glColor3f(0.5,0,0);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==9)//todo
-            {
-                glColor3f(0,0.5,0);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==10)//todo 墨蓝色
-            {
-                glColor3f(0,0,0.5);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==11)//todo
-            {
-                glColor3f(0,0.5,0.5);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==12)//todo　土黄色
-            {
-                glColor3f(0.5,0.5,0);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==13)//todo 紫色
-            {
-                glColor3f(0.5,0,0.5);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
-            else if(i==14)//todo　绿蓝之间
-            {
-                glColor3f(0.8,0,0.5);
-                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
-                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
-                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
-                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
-                }
-            }
+//                }
+////                glColor3f(0.0,0.0,1.0);
+////                for (int k = 0; k <Objs[i]->co_MapPonits.size(); ++k) {
+////                    cv::Mat pos = Objs[i]->pro_MapPonits[k]->GetWorldPos();
+////                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+////                }
+//            }
+//            else if(i==3)//todo 蓝色
+//            {
+//                glColor3f(0.0,0.0,1.0);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
+////                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==4)//todo 青色
+//            {
+//                glColor3f(0.0,0.0,0.0);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==5)//todo 黄色
+//            {
+//                glColor3f(1.0,1.0,0.0);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==6)//todo 粉色
+//            {
+//                glColor3f(1.0,0.0,1.0);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==7)//todo 灰色
+//            {
+//                glColor3f(0.5,0.5,0.5);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==8)//todo　棕色
+//            {
+//                glColor3f(0.5,0,0);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->co_MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==9)//todo
+//            {
+//                glColor3f(0,0.5,0);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->co_MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==10)//todo 墨蓝色
+//            {
+//                glColor3f(0,0,0.5);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==11)//todo
+//            {
+//                glColor3f(0,0.5,0.5);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==12)//todo　土黄色
+//            {
+//                glColor3f(0.5,0.5,0);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==13)//todo 紫色
+//            {
+//                glColor3f(0.5,0,0.5);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
+//            else if(i==14)//todo　绿蓝之间
+//            {
+//                glColor3f(0.8,0,0.5);
+//                //vector<MapPoint*> vpObjMPs=Objs[i]->MapPonits;
+//                for (size_t j = 0; j <Objs[i]->MapPonits.size() ; j++) {
+//                    cv::Mat pos = Objs[i]->MapPonits[j]->GetWorldPos();
+//                    glVertex3f(pos.at<float>(0),pos.at<float>(1),pos.at<float>(2));
+//                }
+//            }
         }
         glEnd();
 
@@ -342,6 +342,62 @@ namespace myslam
 
 }
 
+
+    void MapDrawer::Drawlinebetweenobjects(pangolin::OpenGlMatrix &Twc)
+    {
+        const vector<Object*> vObjs = mpMap->GetObjects();
+        vector<cv::Mat> object_cen;
+
+        for(size_t i=0; i<vObjs.size(); i++)
+        {
+            Object* Obj = vObjs[i];
+            if(Obj->MapPonits.size()<6)
+                continue;
+
+            float sum_x=0;
+            float sum_y=0;
+            float sum_z=0;
+            for (int j = 0; j <Obj->MapPonits.size() ; ++j) {
+                MapPoint *pp=Obj->MapPonits[j];
+                cv::Mat pp_pt=pp->GetWorldPos();
+
+                sum_x+=pp_pt.at<float>(0);
+                sum_y+=pp_pt.at<float>(1);
+                sum_z+=pp_pt.at<float>(2);
+            }
+            float average_x=sum_x/Obj->MapPonits.size();
+            float average_y=sum_y/Obj->MapPonits.size();
+            float average_z=sum_z/Obj->MapPonits.size();
+            cv::Mat obj_cen=(cv::Mat_<float>(3,1)<< average_x, average_y, average_z);
+            object_cen.push_back(obj_cen);
+            glPointSize(4*mPointSize);
+            glBegin(GL_POINTS);
+            if(i==1)
+                glColor3f(1.0f,0.0f,0.0f);
+            else
+                glColor3f(0.0f,1.0f,0.0f);
+            glVertex3f(average_x,average_y,average_z);
+            glEnd();
+        }
+
+        glLineWidth(mKeyFrameLineWidth);
+        glColor3f(1.0f,1.0f,0.0f);
+        glBegin(GL_LINES);
+        for (int k = 0; k <object_cen.size() ; ++k) {
+            for (int i = k; i <object_cen.size() ; ++i) {
+                if(k==i)
+                    continue;
+
+                glVertex3f(object_cen[k].at<float>(0),object_cen[k].at<float>(1),object_cen[k].at<float>(2));
+                glVertex3f(object_cen[i].at<float>(0),object_cen[i].at<float>(1),object_cen[i].at<float>(2));
+
+            }
+        }
+        glEnd();
+
+
+
+    }
     void MapDrawer::Drawobject3Dbox(pangolin::OpenGlMatrix &Twc)
     {
         const vector<Object*> vObjs = mpMap->GetObjects();
@@ -349,8 +405,6 @@ namespace myslam
         vector<cv::Mat> pro_object_cen;
         for(size_t i=0; i<vObjs.size(); i++)
         {
-            if(i==0||i==3)
-                continue;
             Object* Obj = vObjs[i];
             if(Obj->co_MapPonits.size()<6)
                 continue;
@@ -433,18 +487,18 @@ namespace myslam
             glBegin(GL_POINTS);
             if(i==1)
                 glColor3f(1.0f,0.0f,0.0f);
-            else if(i==2)
+            else
                 glColor3f(0.0f,1.0f,0.0f);
             glVertex3f(average_x,average_y,average_z);
             glEnd();
-            glPointSize(4*mPointSize);
-            glBegin(GL_POINTS);
-            if(i==1)
-                glColor3f(1.0,0.65,0.0);
-            else if(i==2)
-                glColor3f(0.0f,0.0f,1.0f);
-            glVertex3f(pro_average_x,pro_average_y,pro_average_z);
-            glEnd();
+//            glPointSize(4*mPointSize);
+//            glBegin(GL_POINTS);
+//            if(i==1)
+//                glColor3f(1.0,0.65,0.0);
+//            else if(i==2)
+//                glColor3f(0.0f,0.0f,1.0f);
+//            glVertex3f(pro_average_x,pro_average_y,pro_average_z);
+//            glEnd();
 
 
             glLineWidth(mKeyFrameLineWidth);
@@ -486,48 +540,47 @@ namespace myslam
             glEnd();
 
 
-            glLineWidth(mKeyFrameLineWidth);
-            if(i==1)
-                glColor3f(1.0,0.65,0.0);
-            else if(i==2)
-                glColor3f(0.0f,0.0f,1.0f);
-            glBegin(GL_LINES);
-
-
-
-            glVertex3f(pro_x_min,pro_y_min,pro_z_min);
-            glVertex3f(pro_x_max,pro_y_min,pro_z_min);
-            glVertex3f(pro_x_min,pro_y_min,pro_z_min);
-            glVertex3f(pro_x_min,pro_y_max,pro_z_min);
-            glVertex3f(pro_x_min,pro_y_min,pro_z_min);
-            glVertex3f(pro_x_min,pro_y_min,pro_z_max);
-
-            glVertex3f(pro_x_max,pro_y_max,pro_z_min);
-            glVertex3f(pro_x_max,pro_y_min,pro_z_min);
-            glVertex3f(pro_x_max,pro_y_max,pro_z_min);
-            glVertex3f(pro_x_min,pro_y_max,pro_z_min);
-            glVertex3f(pro_x_max,pro_y_max,pro_z_min);
-            glVertex3f(pro_x_max,pro_y_max,pro_z_max);
-
-            glVertex3f(pro_x_max,pro_y_min,pro_z_max);
-            glVertex3f(pro_x_max,pro_y_min,pro_z_min);
-            glVertex3f(pro_x_max,pro_y_min,pro_z_max);
-            glVertex3f(pro_x_min,pro_y_min,pro_z_max);
-            glVertex3f(pro_x_max,pro_y_min,pro_z_max);
-            glVertex3f(pro_x_max,pro_y_max,pro_z_max);
-
-            glVertex3f(pro_x_min,pro_y_max,pro_z_max);
-            glVertex3f(pro_x_min,pro_y_min,pro_z_max);
-            glVertex3f(pro_x_min,pro_y_max,pro_z_max);
-            glVertex3f(pro_x_min,pro_y_max,pro_z_min);
-            glVertex3f(pro_x_min,pro_y_max,pro_z_max);
-            glVertex3f(pro_x_max,pro_y_max,pro_z_max);
-
-            glEnd();
+//            glLineWidth(mKeyFrameLineWidth);
+//            if(i==1)
+//                glColor3f(1.0,0.65,0.0);
+//            else if(i==2)
+//                glColor3f(0.0f,0.0f,1.0f);
+//            glBegin(GL_LINES);
+//
+//
+//            glVertex3f(pro_x_min,pro_y_min,pro_z_min);
+//            glVertex3f(pro_x_max,pro_y_min,pro_z_min);
+//            glVertex3f(pro_x_min,pro_y_min,pro_z_min);
+//            glVertex3f(pro_x_min,pro_y_max,pro_z_min);
+//            glVertex3f(pro_x_min,pro_y_min,pro_z_min);
+//            glVertex3f(pro_x_min,pro_y_min,pro_z_max);
+//
+//            glVertex3f(pro_x_max,pro_y_max,pro_z_min);
+//            glVertex3f(pro_x_max,pro_y_min,pro_z_min);
+//            glVertex3f(pro_x_max,pro_y_max,pro_z_min);
+//            glVertex3f(pro_x_min,pro_y_max,pro_z_min);
+//            glVertex3f(pro_x_max,pro_y_max,pro_z_min);
+//            glVertex3f(pro_x_max,pro_y_max,pro_z_max);
+//
+//            glVertex3f(pro_x_max,pro_y_min,pro_z_max);
+//            glVertex3f(pro_x_max,pro_y_min,pro_z_min);
+//            glVertex3f(pro_x_max,pro_y_min,pro_z_max);
+//            glVertex3f(pro_x_min,pro_y_min,pro_z_max);
+//            glVertex3f(pro_x_max,pro_y_min,pro_z_max);
+//            glVertex3f(pro_x_max,pro_y_max,pro_z_max);
+//
+//            glVertex3f(pro_x_min,pro_y_max,pro_z_max);
+//            glVertex3f(pro_x_min,pro_y_min,pro_z_max);
+//            glVertex3f(pro_x_min,pro_y_max,pro_z_max);
+//            glVertex3f(pro_x_min,pro_y_max,pro_z_min);
+//            glVertex3f(pro_x_min,pro_y_max,pro_z_max);
+//            glVertex3f(pro_x_max,pro_y_max,pro_z_max);
+//
+//            glEnd();
 //          cout<<"object"<<i<<":"<<x_max-x_min<<" "<<y_max-y_min<<" "<<z_max-z_min<<endl;
         }
         glLineWidth(mKeyFrameLineWidth);
-        glColor3f(0.0f,0.0f,0.0f);
+        glColor3f(1.0f,1.0f,0.0f);
         glBegin(GL_LINES);
         for (int k = 0; k <object_cen.size() ; ++k) {
             for (int i = 0; i <object_cen.size() ; ++i) {
@@ -537,13 +590,15 @@ namespace myslam
                 glVertex3f(object_cen[k].at<float>(0),object_cen[k].at<float>(1),object_cen[k].at<float>(2));
                 glVertex3f(object_cen[i].at<float>(0),object_cen[i].at<float>(1),object_cen[i].at<float>(2));
 
-                glVertex3f(pro_object_cen[k].at<float>(0),pro_object_cen[k].at<float>(1),pro_object_cen[k].at<float>(2));
-                glVertex3f(pro_object_cen[i].at<float>(0),pro_object_cen[i].at<float>(1),pro_object_cen[i].at<float>(2));
+//                glVertex3f(pro_object_cen[k].at<float>(0),pro_object_cen[k].at<float>(1),pro_object_cen[k].at<float>(2));
+//                glVertex3f(pro_object_cen[i].at<float>(0),pro_object_cen[i].at<float>(1),pro_object_cen[i].at<float>(2));
 
             }
         }
         glEnd();
     }
+
+
 
     void MapDrawer::DrawKeyFrames(const bool bDrawKF, const bool bDrawGraph)
     {
