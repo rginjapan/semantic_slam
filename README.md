@@ -9,9 +9,6 @@
 
 ![Image text](https://github.com/zssjh/semantic_slam/blob/master/picture/ape.png)
 
-相对误差：
-
-![Image text](https://github.com/zssjh/semantic_slam/blob/master/picture/rpe.png)
 
 实际场景稀疏语义地图表达，useful数据关联：
 
